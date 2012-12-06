@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Internet Explorer Error!</title>
+
+    <meta name="description" content="Don&apos;t you love it when IE freezes?">
+    <meta property="og:description" content="Don&apos;t you love it when IE freezes?" />
+    <meta property="og:title" content="Internet Explorer Error!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://ieerror.com/" />
+    <meta property="og:image" content="http://ieerror.com/Internet-Explorer.png" />
+    <meta property="fb:admins" content="510754254" />
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <style>
+      body, html {
+          margin: 0;
+          padding: 0;
+      }
+
+      canvas {
+          background: url('Windows-XP.jpg') no-repeat;
+          background-size: cover;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "http://connect.facebook.net/en_GB/all.js#xfbml=1&appId=348071421871295";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <canvas id="canvas" width=1 height=1></canvas>
+
+    <a href="https://twitter.com/WuNeal" class="twitter-follow-button" data-show-count="false">Follow @WuNeal</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-text="Don't you love it when IE freezes?" data-via="WuNeal" data-related="WuNeal">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+    <div class="fb-like" data-href="http://ieerror.com" data-send="true" data-width="450" data-show-faces="false"></div>
+  </body>
+
+  <script type="text/javascript">
+    BOTTOM_HEIGHT = 33;
+
+    function mousePosition(canvas, event) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+            x: event.clientX - rect.left,
+            y: event.clientY - rect.top,
+        };
+    }
+
+    function getWindowSize() {
+        return {
+            width: window.innerWidth || document.body.clientWidth,
+            height: window.innerHeight || document.body.clientHeight,
+        };
+    }
+
+    var canvas = $('#canvas')[0];
+
+    if (canvas.getContext) {
+        var windowSize = getWindowSize();
+        canvas.width = windowSize.width;
+        canvas.height = windowSize.height - BOTTOM_HEIGHT;
+
+        var context = canvas.getContext('2d');
+        var image = new Image();
+        image.src = 'ie-error.jpg';
+        image.onload = function() {
+            canvas.addEventListener('mousemove', function(event) {
+                var mouse = mousePosition(canvas, event);
+                context.drawImage(image, mouse.x, mouse.y);
+            }, false);
+        }
+    }
+  </script>
+</html>
